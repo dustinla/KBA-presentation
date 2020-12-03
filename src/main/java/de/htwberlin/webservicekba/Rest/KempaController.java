@@ -3,16 +3,15 @@ import de.htwberlin.webservicekba.Model.Todo;
 import de.htwberlin.webservicekba.Repo.TodoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class KempaController {
 
+
+    //TODO Repos eig in eigene Services
     private final TodoRepository todoRepository;
 
     public KempaController(TodoRepository todoRepository) {
@@ -37,8 +36,12 @@ public class KempaController {
     @PostMapping("/todos")
     public ResponseEntity<Todo> saveTodo(@RequestBody Todo todo) {
         Todo todos = todoRepository.save(todo);
+        return new ResponseEntity<>(todos, HttpStatus.CREATED);
+    }
 
-        return new ResponseEntity<>(todos, HttpStatus.OK);
-
+    @DeleteMapping("/todos/{id}")
+    public ResponseEntity<Void> saveTodo(@PathVariable("id") Long id) {
+        todoRepository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
