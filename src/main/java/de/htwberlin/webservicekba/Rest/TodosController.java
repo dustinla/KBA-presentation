@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController("todos")
+@RestController()
+@RequestMapping("todos")
 public class TodosController {
 
 
@@ -21,7 +22,7 @@ public class TodosController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<Todo>> getAllTodos() {
         List<Todo> todos = todoRepository.findAll();
 
@@ -29,18 +30,18 @@ public class TodosController {
 
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Todo> saveTodo(@RequestBody Todo todo) {
         Todo todos = todoRepository.save(todo);
         return new ResponseEntity<>(todos, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<Void> saveTodo(@PathVariable("id") Long id) {
         todoRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @PatchMapping("/{id}")
+    @PatchMapping("{id}")
     public ResponseEntity<Todo> updateTodo(@PathVariable("id") Long id, @RequestBody Todo todo) {
         Optional<Todo> findTodo = todoRepository.findById(id);
         Todo todo1 = null;
