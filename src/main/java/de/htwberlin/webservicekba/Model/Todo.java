@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Todos {
+public class Todo {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

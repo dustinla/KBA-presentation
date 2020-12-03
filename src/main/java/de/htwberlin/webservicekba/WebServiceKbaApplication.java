@@ -1,6 +1,6 @@
 package de.htwberlin.webservicekba;
 
-import de.htwberlin.webservicekba.Model.Todos;
+import de.htwberlin.webservicekba.Model.Todo;
 import de.htwberlin.webservicekba.Repo.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,9 +19,9 @@ public class WebServiceKbaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Todos todos = Todos.builder().titel("Einkaufen 3.12").beschreibung("Milch, Kaffe, Tee, Toast, Eier").build();
+		Todo todo = Todo.builder().titel("Einkaufen 3.12").beschreibung("Milch, Kaffe, Tee, Toast, Eier").build();
 
 
-		todoRepository.save(todos);
+		todoRepository.save(todo);
 	}
 }

@@ -1,10 +1,11 @@
 package de.htwberlin.webservicekba.Rest;
-import de.htwberlin.webservicekba.Model.Todos;
+import de.htwberlin.webservicekba.Model.Todo;
 import de.htwberlin.webservicekba.Repo.TodoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -12,8 +13,11 @@ import java.util.List;
 @RestController
 public class KempaController {
 
-    @Autowired
-    TodoRepository todoRepository;
+    private final TodoRepository todoRepository;
+
+    public KempaController(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
 
     @GetMapping("kempa")
     public ResponseEntity<String> kempa(){
@@ -23,8 +27,16 @@ public class KempaController {
 
 
     @GetMapping("/todos")
-    public ResponseEntity<List<Todos>> getAllTodos() {
-        List<Todos> todos = todoRepository.findAll();
+    public ResponseEntity<List<Todo>> getAllTodos() {
+        List<Todo> todos = todoRepository.findAll();
+
+        return new ResponseEntity<>(todos, HttpStatus.OK);
+
+    }
+
+    @PostMapping("/todos")
+    public ResponseEntity<Todo> saveTodo(@RequestBody Todo todo) {
+        Todo todos = todoRepository.save(todo);
 
         return new ResponseEntity<>(todos, HttpStatus.OK);
 
