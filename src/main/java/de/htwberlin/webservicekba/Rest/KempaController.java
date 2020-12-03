@@ -18,7 +18,7 @@ public class KempaController {
     @GetMapping("kempa")
     public ResponseEntity<String> kempa(){
 
-        return new  ResponseEntity<>("HALLO KEMPA", HttpStatus.OK);
+        return new  ResponseEntity<>("Hallo Prof. Dr. Kempa, da waren Sie aber neugierig. :)", HttpStatus.OK);
     }
 
 
