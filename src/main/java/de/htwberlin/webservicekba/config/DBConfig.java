@@ -15,13 +15,20 @@ public class DBConfig {
     @Value("${spring.datasource.url}")
     private String dbUrl;
 
+    @Value("${spring.datasource.hikari.maximum-pool-size}")
+    private int maxPool;
+
+    @Value("${spring.datasource.hikari.minimum-idle}")
+    private int minPool;
     @Bean
-    public DataSource dataSource() throws SQLException {
+    public DataSource dataSource() {
         if (dbUrl == null || dbUrl.isEmpty()) {
             return new HikariDataSource();
         } else {
             HikariConfig config = new HikariConfig();
             config.setJdbcUrl(dbUrl);
+            config.setMaximumPoolSize(maxPool);
+            config.setMinimumIdle(minPool);
             return new HikariDataSource(config);
         }
 
