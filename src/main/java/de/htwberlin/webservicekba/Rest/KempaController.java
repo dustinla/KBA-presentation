@@ -51,10 +51,10 @@ public class KempaController {
         Todo todo1 = null;
         if (findTodo.isPresent()) {
             todo1 = findTodo.get();
-            if (!todo.getBeschreibung().isEmpty()) {
+            if (todo.getBeschreibung() != null) {
                 todo1.setBeschreibung(todo.getBeschreibung());
             }
-            if (!todo.getTitel().isEmpty()) {
+            if (todo.getTitel() != null) {
                 todo1.setTitel(todo.getTitel());
             }
 
