@@ -19,9 +19,13 @@ public class WebServiceKbaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Todo todo = Todo.builder().titel("Einkaufen 3.12").beschreibung("Milch, Kaffe, Tee, Toast, Eier").build();
+
+		if (todoRepository.findAll().size() < 1) {
+			Todo todo = Todo.builder().titel("Einkaufen 3.12").beschreibung("Milch, Kaffe, Tee, Toast, Eier").build();
 
 
-		todoRepository.save(todo);
+			todoRepository.save(todo);
+		}
+
 	}
 }
