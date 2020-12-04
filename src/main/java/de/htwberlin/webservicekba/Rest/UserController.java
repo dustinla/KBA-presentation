@@ -3,10 +3,14 @@ package de.htwberlin.webservicekba.Rest;
 
 import de.htwberlin.webservicekba.Model.Benutzer;
 import de.htwberlin.webservicekba.Repo.UserRepository;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Controller
 @ResponseBody
@@ -55,6 +59,20 @@ public class UserController {
     @DeleteMapping("/user/{id}")
     void deleteUser(@PathVariable Long id) {
         userRepository.deleteById(id);
+    }
+
+
+
+    //Demonstation von Restful
+    @GetMapping("/restfuluser/{id}")
+    EntityModel<Benutzer> restfull(@PathVariable Long id) {
+
+        Benutzer benutzer = userRepository.findById(id) //
+                .orElseThrow(() -> new UserNotFoundException(id));
+
+        return EntityModel.of(benutzer, //
+                linkTo(methodOn(UserController.class).restfull(id)).withSelfRel(),
+                linkTo(methodOn(UserController.class).all()).withRel("user"));
     }
 
     
