@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController()
+@RestController
 @RequestMapping("todos")
 public class TodosController {
 
@@ -27,7 +27,29 @@ public class TodosController {
         List<Todo> todos = todoRepository.findAll();
 
         return new ResponseEntity<>(todos, HttpStatus.OK);
+    }
 
+    @GetMapping("{id}")
+    public ResponseEntity<Todo> getTodoById(@PathVariable Long id) {
+        Optional<Todo> todo = todoRepository.findById(id);
+        return todo.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+//      Gleiche Funktion wie darüber.
+//    @GetMapping("{id}")
+//    public ResponseEntity<Todo> getTodoById(@PathVariable Long id) {
+//        Optional<Todo> todo = todoRepository.findById(id);
+//        if (!todo.isPresent()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//
+//        return new ResponseEntity<>(todo.get(), HttpStatus.OK);
+//    }
+
+    @GetMapping("titel/{titel}")
+    public ResponseEntity<Todo> getTodoByTitel(@PathVariable String titel) {
+        Optional<Todo> todo = todoRepository.findByTitel(titel);
+        return todo.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("")
