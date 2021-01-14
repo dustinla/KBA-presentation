@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 
 @Configuration
 public class DBConfig {
@@ -20,6 +19,7 @@ public class DBConfig {
 
     @Value("${spring.datasource.hikari.minimum-idle}")
     private int minPool;
+
     @Bean
     public DataSource dataSource() {
         if (dbUrl == null || dbUrl.isEmpty()) {

@@ -66,6 +66,7 @@ public class TodosController {
         todosService.deleteTodo(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @PatchMapping("{id}")
     public ResponseEntity<Todo> updateTodo(@PathVariable("id") Long id, @RequestBody Todo todo) {
         Optional<Todo> findTodo = todosService.findSingleTodo(id);

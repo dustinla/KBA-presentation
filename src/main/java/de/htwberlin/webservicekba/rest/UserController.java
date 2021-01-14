@@ -18,7 +18,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class UserController {
 
 
-
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -28,7 +27,6 @@ public class UserController {
 
     /**
      * Hier eine weitere Variante wie man das Mapping realisieren kann. @GetMapping sollte aber bevorzugt werden!
-     *
      */
     @RequestMapping(method = RequestMethod.GET, path = "/user")
     public List<User> all() {
@@ -73,7 +71,6 @@ public class UserController {
     }
 
 
-
     //Demonstation von Restful
     @GetMapping("/restfuluser/{id}")
     public EntityModel<User> restfull(@PathVariable Long id) {
@@ -84,5 +81,5 @@ public class UserController {
                 linkTo(methodOn(UserController.class).all()).withRel("user"));
     }
 
-    
+
 }
