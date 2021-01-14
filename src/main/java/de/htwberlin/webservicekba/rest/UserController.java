@@ -3,6 +3,7 @@ package de.htwberlin.webservicekba.rest;
 
 import de.htwberlin.webservicekba.model.User;
 import de.htwberlin.webservicekba.service.UserService;
+import de.htwberlin.webservicekba.service.UserServiceImpl;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 

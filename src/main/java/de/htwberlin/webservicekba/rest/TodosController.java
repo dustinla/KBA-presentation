@@ -2,6 +2,7 @@ package de.htwberlin.webservicekba.rest;
 
 import de.htwberlin.webservicekba.model.Todo;
 import de.htwberlin.webservicekba.service.TodosService;
+import de.htwberlin.webservicekba.service.TodosServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class TodosController {
 
     public final TodosService todosService;
 
-    public TodosController(TodosService todosService) {
+    public TodosController(TodosServiceImpl todosService) {
         this.todosService = todosService;
     }
 
