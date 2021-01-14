@@ -10,6 +10,16 @@ werden:
 Natürlich können diese Informationen auch in die application.properties geschrieben werden, sollte aber nicht getan
 werden aus Sicherheitsgründen.
 
+
+### Testserver
+Unter `https://web-service-kba.herokuapp.com/` können die Controller durch Swagger-ui getestet werden.
+Es ist keine installation von Postman oder ähnlichem lokal dafür notwendig.
+
+### Swagger
+Swagger generiert automatisch anhand der Annotationen eine API-Definition. Wenn Get/Post etc. in der Ui genutzt wird, 
+wird dann tatsächlich ein Request an die URL geschickt und der Response abgewartet und angezeigt.
+
+
 ### Teile der Quellen vom Code
 
 User Beispiel:  
