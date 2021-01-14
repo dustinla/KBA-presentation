@@ -85,7 +85,8 @@ public class UserController {
         User user = userService.findSingleUser(id);
         return EntityModel.of(user,
                 linkTo(methodOn(UserController.class).restfull(id)).withSelfRel(),
-                linkTo(methodOn(UserController.class).all()).withRel("user"));
+                linkTo(methodOn(UserController.class).all()).withRel("user"),
+                linkTo(methodOn(TodosController.class).getAllTodos()).withRel("todos"));
     }
 
 
