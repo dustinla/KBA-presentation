@@ -12,9 +12,12 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+/**
+ * Statt @Restcontroller zu schreiben, kann auch mit zwei Annotationen dasselbe Ziel erreicht werden.
+ * Fehlerbehandlung finden im UserNotFoundAdvice statt.
+ */
 @Controller
 @ResponseBody
-//Man könnte natürlich hier auch @RestController nutzen, siehe in TodosController
 public class UserController {
 
 
@@ -45,7 +48,8 @@ public class UserController {
     }
 
     /**
-     * Beide Varianten mit funktionieren als Param, da Spring MVC automatisch es dann als Param versteht, auch wenn nicht explizit @RequestParam annotiert wurde.
+     * Diese und die hier drunter auskommentierte Methode versteht Spring MVC automatisch als Parameter, auch wenn nicht explizit @RequestParam annotiert wurde.
+     * Da gibt es in der Spring Community keine Bevorzugung. Jedes Team kann selbst entscheiden wie sie es handhaben wollen.
      */
     @GetMapping("/userParam")
     public List<User> findUsersParam(String vorname) {
@@ -71,7 +75,9 @@ public class UserController {
     }
 
 
-    //Demonstation von Restful
+    /**
+     * Diese Methode zeigt beispielhaft wie HATEOAS (Hypermedia As The Engine Of Application State) implementiert wird.
+     */
     @GetMapping("/restfuluser/{id}")
     public EntityModel<User> restfull(@PathVariable Long id) {
 

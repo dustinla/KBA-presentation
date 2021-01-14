@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * Spring Data Magic
+ */
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 

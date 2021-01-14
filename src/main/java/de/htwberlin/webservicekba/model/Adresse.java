@@ -23,8 +23,8 @@ public class Adresse {
 
     private String strassennummer;
 
-    @JsonProperty("Postleitzahl")
-    @JsonAlias("plz")
+    @JsonProperty("Postleitzahl") // Wie das Attribute dann in der Json heißen soll. Ist jackson Funktion.
+    @JsonAlias("plz") // Wenn eine Adresse gespeichert werden soll, kann das Attributfeld sowohl plz als auch Postleitzahl heißen.
     @Column(length = 5)
     private String plz;
 }

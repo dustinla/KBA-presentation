@@ -5,6 +5,9 @@ import de.htwberlin.webservicekba.model.Todo;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Simple CRUD Operation ohne logik
+ */
 public interface ITodosService {
     List<Todo> findAllTodos();
 

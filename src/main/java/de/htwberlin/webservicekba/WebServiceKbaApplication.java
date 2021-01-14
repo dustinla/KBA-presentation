@@ -23,11 +23,18 @@ public class WebServiceKbaApplication implements CommandLineRunner {
         SpringApplication.run(WebServiceKbaApplication.class, args);
     }
 
+    /**
+     * Wird bei jedem Start des Services automatisch ausgeführt.
+     * Paar Daten befüllen, sofern keine/zu wenige vorhanden sind.
+     *
+     * @param args
+     */
     @Override
     public void run(String... args) {
 
-        if (todoRepository.findAll().size() < 1) {
-            Todo todo = Todo.builder().titel("Einkaufen 3.12").beschreibung("Milch, Kaffe, Tee, Toast, Eier").build();
+
+        if (todoRepository.findAll().isEmpty()) {
+            Todo todo = Todo.builder().titel("Einkaufen 3.12").beschreibung("Milch, Kaffee, Tee, Toast, Eier").build();
             todoRepository.save(todo);
         }
         if (userRepository.findAll().size() < 2) {

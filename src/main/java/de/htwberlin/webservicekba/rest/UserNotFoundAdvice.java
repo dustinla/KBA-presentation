@@ -6,8 +6,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * Wenn die Fehlermeldung UserNotFoundException geworfen wird, schaltet sich dieser Klasse ein.
+ * Er setzt dann den Status auf Not Found und gibt dann in diesem Fall ein String zurück
+ * Hier könnte natürlich auch ein Objekt als JSON zurückgeschickt werden. (Siehe Herr Kempas Beispiel mit APIError)
+ */
 @ControllerAdvice
-// Der Advice hooked sich
 public class UserNotFoundAdvice {
 
     @ResponseBody

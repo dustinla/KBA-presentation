@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Die Klasse ist mit @Restcontroller annotiert, alle Methoden in der Klasse werden automatisch in Json de- & encoded
+ * In diesem Beispiel wird ResponseEntity verwendet.
+ * In dieser Klasse muss man im Controller sich selbst um die HTTP Status und was denn nun im Body geschickt werden kümmern.
+ */
 @RestController
 @RequestMapping("todos")
-/**
- * In diesem Beispiel wird ResponseEntity verwendet.
- * Hier muss man im Controller sich selbst um die HTTP Status und was denn nun im Body geschickt werden soll selbst kümmern.
- */
 public class TodosController {
 
 
@@ -37,17 +38,6 @@ public class TodosController {
         Optional<Todo> todo = todosService.findSingleTodo(id);
         return todo.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
-//      Gleiche Funktion wie darüber.
-//    @GetMapping("{id}")
-//    public ResponseEntity<Todo> getTodoById(@PathVariable Long id) {
-//        Optional<Todo> todo = todoRepository.findById(id);
-//        if (!todo.isPresent()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//
-//        return new ResponseEntity<>(todo.get(), HttpStatus.OK);
-//    }
 
     @GetMapping("titel/{titel}")
     public ResponseEntity<Todo> getTodoByTitel(@PathVariable String titel) {

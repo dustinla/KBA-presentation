@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user_entity") //user is not allowed in postgres DB
+@Table(name = "user_entity") // Datenbanken mögen keine Tables die User heißen. Deswegen wir diese explizit umbenannt.
 public class User {
 
     @Id

@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
+/**
+ * Konfigurationdatei für Hiberante.
+ * Mehr konfiguration passiert im Hintergrund durch Spring Boot
+ */
 @Configuration
 public class DBConfig {
 
