@@ -8,7 +8,9 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -57,12 +59,34 @@ public class UserController {
 
         return userService.findUsersEqualsVorname(vorname);
     }
+    @GetMapping("/userParamDefault")
+    public List<User> findUsersParamDefault(@RequestParam(defaultValue = "Neya") String vorname) {
 
-//    @GetMapping("/userParam")
-//    public List<Benutzer> findUsersParam( @RequestParam String vorname) {
-//
-//           return userService.findUsersEqualsVorname(vorname);
-//    }
+        return userService.findUsersEqualsVorname(vorname);
+    }
+
+    /**
+     * Standardmäßig sind Params Pflicht. Durch (required = false) kann diese optional gemacht werden.
+     */
+    @GetMapping("/userParamOptional1")
+    public List<User> findUsersParam2(@RequestParam(required = false) String vorname) {
+        if (vorname != null) {
+            return userService.findUsersEqualsVorname(vorname);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    /**
+     *  Alternative um Optional zu machen ab Java 8
+     */
+    @GetMapping("/userParamOptional2")
+    public List<User> findUsersParam3(@RequestParam Optional<String> vorname) {
+
+        return vorname.map(userService::findUsersEqualsVorname).orElseGet(ArrayList::new);
+
+
+    }
 
     @PutMapping("/user/{id}")
     public User replaceUser(@RequestBody User newUser, @PathVariable Long id) {
