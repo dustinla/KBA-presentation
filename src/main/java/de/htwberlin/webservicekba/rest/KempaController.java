@@ -1,12 +1,7 @@
-package de.htwberlin.webservicekba.Rest;
-import de.htwberlin.webservicekba.Model.Todo;
-import de.htwberlin.webservicekba.Repo.TodoRepository;
+package de.htwberlin.webservicekba.rest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class KempaController {

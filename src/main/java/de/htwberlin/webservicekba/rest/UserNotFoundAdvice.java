@@ -1,4 +1,4 @@
-package de.htwberlin.webservicekba.Rest;
+package de.htwberlin.webservicekba.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

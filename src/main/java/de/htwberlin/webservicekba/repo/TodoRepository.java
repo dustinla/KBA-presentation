@@ -1,6 +1,6 @@
-package de.htwberlin.webservicekba.Repo;
+package de.htwberlin.webservicekba.repo;
 
-import de.htwberlin.webservicekba.Model.Todo;
+import de.htwberlin.webservicekba.model.Todo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

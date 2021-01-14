@@ -1,10 +1,10 @@
 package de.htwberlin.webservicekba;
 
-import de.htwberlin.webservicekba.Model.Adresse;
-import de.htwberlin.webservicekba.Model.Benutzer;
-import de.htwberlin.webservicekba.Model.Todo;
-import de.htwberlin.webservicekba.Repo.TodoRepository;
-import de.htwberlin.webservicekba.Repo.UserRepository;
+import de.htwberlin.webservicekba.model.Adresse;
+import de.htwberlin.webservicekba.model.User;
+import de.htwberlin.webservicekba.model.Todo;
+import de.htwberlin.webservicekba.repo.TodoRepository;
+import de.htwberlin.webservicekba.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -36,7 +36,7 @@ public class WebServiceKbaApplication implements CommandLineRunner {
 					.strassenname("Berliner Straße")
 					.plz("12345")
 					.build();
-			Benutzer benutzer = Benutzer.builder()
+			User user = User.builder()
 					.vorname("Neya")
 					.nachname("Türknauf")
 					.adresse(adresse)
@@ -46,13 +46,13 @@ public class WebServiceKbaApplication implements CommandLineRunner {
 					.strassenname("Köpenicker Straße")
 					.plz("54321")
 					.build();
-			Benutzer benutzer2 = Benutzer.builder()
+			User user2 = User.builder()
 					.vorname("Justin")
 					.nachname("Kurz")
 					.adresse(adresse2)
 			.build();
-			userRepository.save(benutzer);
-			userRepository.save(benutzer2);
+			userRepository.save(user);
+			userRepository.save(user2);
 
 		}
 

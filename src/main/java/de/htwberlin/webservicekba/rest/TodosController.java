@@ -1,7 +1,7 @@
-package de.htwberlin.webservicekba.Rest;
+package de.htwberlin.webservicekba.rest;
 
-import de.htwberlin.webservicekba.Model.Todo;
-import de.htwberlin.webservicekba.Repo.TodoRepository;
+import de.htwberlin.webservicekba.model.Todo;
+import de.htwberlin.webservicekba.service.TodosService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,27 +11,30 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("todos")
+/**
+ * In diesem Beispiel wird ResponseEntity verwendet.
+ * Hier muss man im Controller sich selbst um die HTTP Status und was denn nun im Body geschickt werden soll selbst kümmern.
+ */
 public class TodosController {
 
 
-    //TODO Repos eig in eigene Services
-    private final TodoRepository todoRepository;
+    public final TodosService todosService;
 
-    public TodosController(TodoRepository todoRepository) {
-        this.todoRepository = todoRepository;
+    public TodosController(TodosService todosService) {
+        this.todosService = todosService;
     }
 
 
     @GetMapping("")
     public ResponseEntity<List<Todo>> getAllTodos() {
-        List<Todo> todos = todoRepository.findAll();
+        List<Todo> todos = todosService.findAllTodos();
 
         return new ResponseEntity<>(todos, HttpStatus.OK);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<Todo> getTodoById(@PathVariable Long id) {
-        Optional<Todo> todo = todoRepository.findById(id);
+        Optional<Todo> todo = todosService.findSingleTodo(id);
         return todo.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -48,24 +51,24 @@ public class TodosController {
 
     @GetMapping("titel/{titel}")
     public ResponseEntity<Todo> getTodoByTitel(@PathVariable String titel) {
-        Optional<Todo> todo = todoRepository.findByTitel(titel);
+        Optional<Todo> todo = todosService.findTodoByTitel(titel);
         return todo.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("")
     public ResponseEntity<Todo> saveTodo(@RequestBody Todo todo) {
-        Todo todos = todoRepository.save(todo);
+        Todo todos = todosService.saveTodo(todo);
         return new ResponseEntity<>(todos, HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> saveTodo(@PathVariable("id") Long id) {
-        todoRepository.deleteById(id);
+    public ResponseEntity<Void> deleteTodo(@PathVariable("id") Long id) {
+        todosService.deleteTodo(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @PatchMapping("{id}")
     public ResponseEntity<Todo> updateTodo(@PathVariable("id") Long id, @RequestBody Todo todo) {
-        Optional<Todo> findTodo = todoRepository.findById(id);
+        Optional<Todo> findTodo = todosService.findSingleTodo(id);
         Todo todo1 = null;
         if (findTodo.isPresent()) {
             todo1 = findTodo.get();
@@ -76,7 +79,7 @@ public class TodosController {
                 todo1.setTitel(todo.getTitel());
             }
 
-            todoRepository.save(todo1);
+            saveTodo(todo1);
         }
 
         return new ResponseEntity<>(todo1, HttpStatus.OK);

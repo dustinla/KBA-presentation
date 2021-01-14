@@ -1,4 +1,4 @@
-package de.htwberlin.webservicekba.Model;
+package de.htwberlin.webservicekba.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

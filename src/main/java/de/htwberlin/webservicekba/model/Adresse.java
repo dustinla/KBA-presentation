@@ -1,4 +1,4 @@
-package de.htwberlin.webservicekba.Model;
+package de.htwberlin.webservicekba.model;
 
 
 import com.fasterxml.jackson.annotation.JsonAlias;
@@ -23,7 +23,7 @@ public class Adresse {
 
     private String strassennummer;
 
-    @JsonProperty("Postleihzahl")
+    @JsonProperty("Postleitzahl")
     @JsonAlias("plz")
     @Column(length = 5)
     private String plz;
