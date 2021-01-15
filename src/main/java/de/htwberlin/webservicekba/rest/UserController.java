@@ -5,6 +5,7 @@ import de.htwberlin.webservicekba.model.User;
 import de.htwberlin.webservicekba.service.UserService;
 import de.htwberlin.webservicekba.service.UserServiceImpl;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,6 +41,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/user")
+    @ResponseStatus(HttpStatus.CREATED) //Responsestatus ist der Standard Statuscode bei dieser Methode.
     public User createNewUser(@RequestBody User newUser) {
         return userService.createNewUser(newUser);
     }
