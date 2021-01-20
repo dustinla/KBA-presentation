@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Simple CRUD Operation ohne logik
+ * Simple CRUD Operation ohne logik.
  */
 public interface TodosService {
     List<Todo> findAllTodos();

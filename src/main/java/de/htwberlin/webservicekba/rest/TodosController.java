@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Die Klasse ist mit @Restcontroller annotiert, alle Methoden in der Klasse werden automatisch in Json de- & encoded
+ * Die Klasse ist mit @Restcontroller annotiert. Alle Methoden in der Klasse werden automatisch in Json deserialisiert und serialisiert.
+ * Wie man gezielt Methoden (de)serialiserten siehe Präsentation.
  * In diesem Beispiel wird ResponseEntity verwendet.
- * In dieser Klasse muss man im Controller sich selbst um die HTTP Status und was denn nun im Body geschickt werden kümmern.
+ * In dieser Klasse muss man sich selbst um die HTTP Status Codes sowie was denn nun im Body geschickt werden soll kümmern.
  */
 @RestController
 @RequestMapping("todos")

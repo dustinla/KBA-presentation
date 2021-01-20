@@ -53,7 +53,7 @@ public class UserController {
     }
 
     /**
-     * Diese und die hier drunter auskommentierte Methode versteht Spring MVC automatisch als Parameter, auch wenn nicht explizit @RequestParam annotiert wurde.
+     * DieseMethoden versteht Spring MVC automatisch als Parameter, auch wenn nicht explizit @RequestParam annotiert wurde.
      * Da gibt es in der Spring Community keine Bevorzugung. Jedes Team kann selbst entscheiden wie sie es handhaben wollen.
      */
     @GetMapping("/userParam")
@@ -61,6 +61,7 @@ public class UserController {
 
         return userService.findUsersEqualsVorname(vorname);
     }
+
     @GetMapping("/userParamDefault")
     public List<User> findUsersParamDefault(@RequestParam(defaultValue = "Neya") String vorname) {
 
@@ -80,7 +81,7 @@ public class UserController {
     }
 
     /**
-     *  Alternative um Optional zu machen ab Java 8
+     * Alternative mit Optional  ab Java 8.
      */
     @GetMapping("/userParamOptional2")
     public List<User> findUsersParam3(@RequestParam Optional<String> vorname) {

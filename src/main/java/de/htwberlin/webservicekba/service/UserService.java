@@ -5,7 +5,7 @@ import de.htwberlin.webservicekba.model.User;
 import java.util.List;
 
 /**
- * Simple CRUD Operation ohne logik
+ * Simple CRUD Operation ohne logik.
  */
 public interface UserService {
     List<User> findAllUser();

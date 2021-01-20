@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 
 /**
  * Konfigurationdatei für Hiberante.
- * Mehr konfiguration passiert im Hintergrund durch Spring Boot
+ * Mehr konfiguration passiert im Hintergrund durch Spring Boot.
  */
 @Configuration
 public class DBConfig {
