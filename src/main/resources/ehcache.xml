@@ -5,6 +5,10 @@
   http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext-3.0.xsd
   http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.8.xsd">
 
+    <service>
+        <jsr107:defaults default-template="default-500">
+        </jsr107:defaults>
+    </service>
 
     <cache-template name="default-500">
         <expiry>
@@ -21,12 +25,12 @@
         <heap unit="entries">500</heap>
     </cache-template>
 
-    <cache uses-template="default-500" alias="de.htwberlin.webservicekba.model.Todo">
+<!--    <cache uses-template="default-500" alias="de.htwberlin.webservicekba.model.Todo">-->
 
 <!--        <expiry>-->
 <!--            <ttl unit="seconds">20</ttl>-->
 <!--        </expiry>-->
 <!--        <heap unit="entries">100</heap>-->
-    </cache>
+<!--    </cache>-->
 
 </config>
