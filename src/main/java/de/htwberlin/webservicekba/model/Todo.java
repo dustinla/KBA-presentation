@@ -1,5 +1,6 @@
 package de.htwberlin.webservicekba.model;
 
+import de.htwberlin.webservicekba.service.TodoListener;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
+@EntityListeners(TodoListener.class)
 @Entity
 @Data
 @Builder

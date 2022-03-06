@@ -5,28 +5,14 @@ import de.htwberlin.webservicekba.model.Todo;
 import de.htwberlin.webservicekba.model.User;
 import de.htwberlin.webservicekba.repo.TodoRepository;
 import de.htwberlin.webservicekba.repo.UserRepository;
-import org.ehcache.config.builders.CacheManagerConfiguration;
-import org.ehcache.core.Ehcache;
-import org.ehcache.core.EhcacheManager;
-import org.ehcache.jsr107.config.Jsr107CacheConfiguration;
-import org.hibernate.Cache;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
-
-import javax.cache.CacheManager;
-import javax.cache.management.CacheMXBean;
-import javax.cache.management.CacheStatisticsMXBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.sql.DataSource;
 
 @SpringBootApplication
 @EnableCaching
@@ -84,9 +70,6 @@ public class WebServiceKbaApplication implements CommandLineRunner {
                     .build();
             userRepository.save(user);
             userRepository.save(user2);
-            entityManager.getEntityManagerFactory().getCache();
-            SessionFactory sessionFactory = entityManager.getEntityManagerFactory().unwrap(SessionFactory.class);
-            Cache cache = sessionFactory.getCache();
         }
 
     }
